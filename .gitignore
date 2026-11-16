@@ -1,0 +1,10 @@
+# Hosting / local environment
+.env
+.env.*
+!.env.example
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+default.php
+*.backup-*.html
