@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#091814"><meta name="description" content="Ouvrir une conversation WhatsApp sans enregistrer le numéro.">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="WA Direct">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>WA Direct — WhatsApp sans enregistrer</title>
+<style>
+:root{color-scheme:dark;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}
+html,body{min-height:100%;margin:0;background:#091814}body{color:#f1f8f4;background:radial-gradient(ellipse 70% 40% at 50% -5%,#1a4935 0%,#0d241c 43%,#091814 100%)}
+button,input,select{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.shell{position:relative;display:flex;flex-direction:column;min-height:100svh;max-width:510px;margin:auto;padding:max(25px,env(safe-area-inset-top)) 23px max(23px,env(safe-area-inset-bottom));overflow:hidden}
+.shell:before{content:"";pointer-events:none;position:absolute;top:-190px;left:50%;width:440px;height:440px;transform:translateX(-50%);border-radius:50%;border:1px solid #7bf1a413;box-shadow:0 0 0 48px #8ff2ad05,0 0 0 100px #8ff2ad03}
+.topline{display:flex;position:relative;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:760;letter-spacing:-.75px}
+.brand-icon{display:grid;place-items:center;width:35px;height:35px;border-radius:12px;background:#25d366;color:#053620}.brand-icon svg{width:23px;height:23px}.direct{color:#58e58e}
+.tag{display:flex;align-items:center;gap:6px;padding:7px 10px;border:1px solid #234538;border-radius:99px;background:#11281fbb;color:#a1b7a9;font-size:11px;font-weight:650}.tag:before{content:"";width:6px;height:6px;border-radius:50%;background:#5ae58b}
+.hero{position:relative;margin-top:clamp(60px,13svh,115px)}.eyebrow{margin:0 0 15px;color:#78dba0;font-size:11px;letter-spacing:2.2px;text-transform:uppercase;font-weight:800}
+h1{font-size:clamp(37px,10vw,53px);line-height:1.09;letter-spacing:-2.5px;font-weight:790;margin:0;max-width:430px}h1 .accent{color:#5feb96}
+.subhead{color:#a3baaa;line-height:1.6;font-size:15px;margin:20px 0 0;max-width:350px}
+.card{position:relative;margin-top:36px;padding:21px;border:1px solid #2b4c3d;border-radius:25px;background:linear-gradient(160deg,#1f3b2de6,#12271efa);box-shadow:0 28px 65px #00170a66}
+.field-label{display:block;color:#e3f0e7;font-size:13px;font-weight:740;margin-bottom:13px}.field-group{display:flex;align-items:stretch;gap:8px}
+.country-box{flex:0 0 100px;min-width:0}.phone-wrap{position:relative;flex:1;min-width:0}
+select,.phone{height:60px;color:#effff3;background:#091d15;border:1px solid #345544;border-radius:15px;outline:0}
+select{width:100%;padding:0 8px;font-size:14px;font-weight:760}.phone{width:100%;padding:0 45px 0 14px;font-size:18px;letter-spacing:.15px}.phone::placeholder{color:#648371}
+select:focus,.phone:focus{border-color:#58df8f;box-shadow:0 0 0 3px #42ca7226}
+.clear{position:absolute;right:12px;top:50%;transform:translateY(-50%);padding:7px;border:0;background:none;color:#86a893;display:none}
+.helper{display:flex;min-height:34px;align-items:center;margin-top:9px;color:#9db4a4;font-size:12px;line-height:1.45}.helper.is-error{color:#ffb1a6}
+.action{display:flex;justify-content:center;align-items:center;gap:12px;width:100%;height:61px;border:0;border-radius:16px;background:#47e184;color:#05371c;font-size:16px;font-weight:820;box-shadow:0 12px 22px #12ac4d25;transition:transform .12s}.action:active{transform:scale(.985);background:#35cc71}
+.action svg,.paste svg{width:20px;height:20px}.paste{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-top:16px;border:0;background:transparent;color:#9fc8ab;font-size:13px;font-weight:640;padding:6px}
+.foot{margin-top:auto;padding-top:45px;text-align:center}.privacy{color:#729883;font-size:12px}.install{margin-top:18px;padding:12px 15px;border:1px solid #214638;background:#0e291e77;border-radius:14px;color:#9ebba9;font-size:11px;line-height:1.5}.install b{color:#d0eed8}
+@media(min-width:640px){.shell{padding-top:34px}.hero{margin-top:88px}}@media(max-height:730px){.hero{margin-top:38px}.card{margin-top:24px}.foot{padding-top:25px}}@media(prefers-reduced-motion:reduce){.action{transition:none}}
+</style></head><body>
+<main class="shell">
+<header class="topline"><div class="brand"><span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3.1a8.9 8.9 0 0 0-7.7 13.3L3 21l4.8-1.3A8.9 8.9 0 1 0 12 3.1Z" stroke="currentColor" stroke-width="1.8"/><path d="M8.1 8.3c.4-.4.7-.4 1-.2l.9 1.3c.2.3.2.5 0 .8l-.6.7c.6 1.2 1.6 2.2 2.8 2.7l.7-.7c.2-.2.5-.2.8-.1l1.5.7c.3.2.4.5.2.9-.4.9-1.1 1.4-2 1.3-3.2-.3-6.1-3.3-6.3-6.2 0-.5.4-.9 1-1.2Z" fill="currentColor"/></svg></span><span>WA <span class="direct">Direct</span></span></div><span class="tag">Sans contact</span></header>
+<section class="hero"><p class="eyebrow">WhatsApp, en un instant</p><h1>Un numéro.<br><span class="accent">Une conversation.</span></h1><p class="subhead">Ouvre une discussion WhatsApp avec n’importe quel numéro, sans l’ajouter à tes contacts.</p></section>
+<form class="card" id="wa-form" novalidate><label class="field-label" for="phone">Numéro de téléphone</label><div class="field-group">
+<div class="country-box"><select id="country" aria-label="Indicatif par défaut">
+<option value="32">🇧🇪 +32</option><option value="33">🇫🇷 +33</option><option value="31">🇳🇱 +31</option><option value="212">🇲🇦 +212</option><option value="49">🇩🇪 +49</option><option value="352">🇱🇺 +352</option><option value="44">🇬🇧 +44</option><option value="34">🇪🇸 +34</option><option value="39">🇮🇹 +39</option><option value="1">🇺🇸 +1</option><option value="41">🇨🇭 +41</option><option value="351">🇵🇹 +351</option><option value="213">🇩🇿 +213</option><option value="216">🇹🇳 +216</option><option value="90">🇹🇷 +90</option><option value="243">🇨🇩 +243</option><option value="221">🇸🇳 +221</option><option value="225">🇨🇮 +225</option><option value="971">🇦🇪 +971</option></select></div>
+<div class="phone-wrap"><input class="phone" id="phone" type="tel" inputmode="tel" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go" placeholder="0470 12 34 56" aria-describedby="hint" required><button class="clear" id="clear" type="button" aria-label="Effacer le numéro">✕</button></div></div>
+<div id="hint" class="helper" role="status" aria-live="polite">Tu peux aussi saisir +33, +212, +1… directement.</div>
+<button class="action" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>Ouvrir sur WhatsApp</button>
+<button class="paste" id="paste" type="button">▣ Coller un numéro</button></form>
+<footer class="foot"><div class="privacy">🔒 Aucun numéro n’est enregistré par cette page.</div><div class="install"><b>Astuce :</b> dans le menu de Chrome, choisis « Ajouter à l’écran d’accueil » pour y accéder comme à une application.</div></footer>
+</main>
+<script>
+const phone=document.querySelector('#phone'),country=document.querySelector('#country'),hint=document.querySelector('#hint'),clearButton=document.querySelector('#clear');
+const defaultHint='Tu peux aussi saisir +33, +212, +1… directement.';
+function asciiDigits(value){return value.replace(/[٠-٩۰-۹０-９]/g,c=>{const code=c.charCodeAt(0);return String(code>=0xFF10?code-0xFF10:code>=0x06F0?code-0x06F0:code-0x0660)})}
+function normalizeNumber(value){
+ let raw=asciiDigits(String(value).normalize('NFKC')).replace(/[\u200B-\u200F\u202A-\u202E\u2060-\u206F\uFEFF]/g,'').replace(/^\s*tel\s*:/i,'').trim();
+ const firstPlus=raw.indexOf('+');if(firstPlus>0&&!/\d/.test(raw.slice(0,firstPlus)))raw=raw.slice(firstPlus);
+ if(raw.startsWith('+')||raw.startsWith('00'))raw=raw.replace(/\(\s*0\s*\)/,'');
+ const digits=raw.replace(/\D/g,'');if(!digits)return{error:'Saisis un numéro de téléphone.'};
+ let full;
+ if(raw.startsWith('+'))full=digits;
+ else if(raw.startsWith('00'))full=digits.slice(2);
+ else if(digits.startsWith(country.value)&&digits.length>=country.value.length+8)full=digits;
+ else full=country.value+digits.replace(/^0+/,'');
+ if(!/^\d+$/.test(full)||full.length<7||full.length>15||full.startsWith('0'))return{error:'Utilise un numéro valide avec son indicatif (ex. +32470123456).'};
+ return{full};
+}
+function setHint(message,error=false){hint.textContent=message;hint.classList.toggle('is-error',error)}
+function updateInput(){clearButton.style.display=phone.value?'block':'none';const result=normalizeNumber(phone.value);if(result.full)setHint('Numéro utilisé : +'+result.full);else if(phone.value.trim().startsWith('+')||phone.value.trim().startsWith('00'))setHint('Indicatif international détecté automatiquement.');else setHint(defaultHint)}
+document.querySelector('#wa-form').addEventListener('submit',event=>{event.preventDefault();const result=normalizeNumber(phone.value);if(result.error){setHint(result.error,true);phone.focus();return;}window.location.assign('https://wa.me/'+result.full)});
+document.querySelector('#paste').addEventListener('click',async()=>{try{const value=await navigator.clipboard.readText();if(!value.trim()){setHint('Le presse-papiers est vide.',true);return;}phone.value=value.trim();updateInput();phone.focus()}catch{setHint('Appuie longuement dans le champ pour coller ton numéro.',true);phone.focus()}});
+clearButton.addEventListener('click',()=>{phone.value='';updateInput();phone.focus()});phone.addEventListener('input',updateInput);country.addEventListener('change',updateInput);
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script></body></html>
