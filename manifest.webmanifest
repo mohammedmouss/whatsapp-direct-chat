@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "WA Direct — WhatsApp sans enregistrer",
+  "short_name": "WA Direct",
+  "description": "Ouvrir directement WhatsApp avec un numéro sans enregistrer le contact.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#091814",
+  "theme_color": "#091814",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
